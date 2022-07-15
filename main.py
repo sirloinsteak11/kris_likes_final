@@ -8,7 +8,8 @@ from dotenv import load_dotenv
 
 from discord.ext import commands
 
-TOKEN = os.environ.get("DISCORD_TOKEN")
+load_dotenv('token.env')
+TOKEN = os.getenv('DISCORD_TOKEN')
 
 intents = discord.Intents.default()
 intents.members = True # Subscribe to the privileged members intent.
@@ -17,13 +18,13 @@ intents.typing = True # allows bot to type????
 intents.messages = True # allows bot to connect to messages?!!?!?!?!
  
 # API keyws that yous saved earlier
-bearer_token = "AAAAAAAAAAAAAAAAAAAAABxHdwEAAAAAtx%2Bz2PRL%2F54wEmMvzU8QMHcR3Wo%3DqfxCoUvGU1xM88vSEKYJQMxUIhy1pASQZabWmMaYpPYugOqT9S"
+bearer_token = os.getenv('BEARER_TOKEN')
 
 # Authenticate to Twitter
 tclient = tweepy.Client(bearer_token)
 
 # gets specified user
-user_id = '1334974466049204226'
+user_id = os.getenv('USER_ID')
 
 #empty variables
 tweet_list = []
