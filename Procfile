@@ -1,1 +1,1 @@
-worker: python3 C:\Users\deonn\Desktop\kris_likes_final
+worker: python3 C:\Users\deonn\Desktop\kris_likes_final\main.py
