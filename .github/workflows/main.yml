@@ -17,8 +17,13 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    env:
+      DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+      TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    
+
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -34,10 +39,3 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          
-      # Discord bot token
-      - name: Run tests
-        env:
-            DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-        run: |
-            echo bruh
