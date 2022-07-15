@@ -1,3 +1,0 @@
- - name: token stuff
-   env:
-       BOT_TOKEN: ${{ secrets.DISCORD_TOKEN }}
