@@ -36,3 +36,10 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          
+      # Discord bot token
+      - name: Run tests
+        env:
+            BOT_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+        run: |
+            nbdev_test_nbs
