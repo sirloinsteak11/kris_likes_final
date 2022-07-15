@@ -64,7 +64,6 @@ async def on_message(message):
         search3 = list(search2)
         results = await gelbooru.random_post(tags=search3)
         tosend = str(results[0])
-        await message.channel.send(tosend)
         await message.channel.send(search)
         await message.channel.send(search2)
         await message.channel.send(search3)
