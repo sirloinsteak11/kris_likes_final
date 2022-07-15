@@ -2,7 +2,7 @@
 import os
 import random
 import tweepy
-
+from pygelbooru import Gelbooru
 import discord
 from dotenv import load_dotenv
 
@@ -14,7 +14,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 intents = discord.Intents.default()
 intents.members = True # Subscribe to the privileged members intent.
 bot = commands.Bot(command_prefix='!', intents=intents)
-intents.typing = True # allows bot to type????
+intents.typing = True # allows bot to type
 intents.messages = True # allows bot to connect to messages?!!?!?!?!
  
 # API keyws that yous saved earlier
@@ -25,6 +25,9 @@ tclient = tweepy.Client(bearer_token)
 
 # gets specified user
 user_id = os.getenv('USER_ID')
+
+# hello gelbooru
+gel_access = ('GEL_API_KEY', 'GEL_ID_KEY')
 
 #empty variables
 tweet_list = []
@@ -41,15 +44,6 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    brooklyn_99_quotes = [
-        'I\'m the human form of the 💯 emoji.',
-        'Bingpot!',
-        (
-            'Cool. Cool cool cool cool cool cool cool, '
-            'no doubt no doubt no doubt no doubt.'
-        ),
-    ]
-
     if message.content == '!s':
         response = tclient.get_liked_tweets(user_id, tweet_fields=["entities"], max_results=100)
         for tweet in response.data:
@@ -62,6 +56,11 @@ async def on_message(message):
         tosend = third.get('expanded_url')
         await message.channel.send(tosend)
         await message.channel.send("enjoy :grin:")
+
+    if '!gel' in message.content:
+        msgcontent = message.content
+        search = msgcontent.replace('!gel', '')
+        await message.channel.send(search)
     
     if message.content == '!helpme':
         await message.channel.send('!s - my only command. spits out random liked posts from krisnards twitter account')
