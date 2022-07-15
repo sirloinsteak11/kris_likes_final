@@ -27,7 +27,7 @@ tclient = tweepy.Client(bearer_token)
 user_id = os.getenv('USER_ID')
 
 # hello gelbooru
-gelbooru = ('GEL_API_KEY', 'GEL_ID_KEY')
+gelbooru = Gelbooru('GEL_API_KEY', 'GEL_ID_KEY')
 
 #empty variables
 tweet_list = []
@@ -60,16 +60,14 @@ async def on_message(message):
     if '!gel' in message.content:
         msgcontent = message.content
         search = msgcontent.replace('!gel', ' ')
-        search2 = search.split(',')
-        search3 = list(search2)
-        results = await gelbooru.random_post(tags=search3, exclude_tags=['gore', 'rape'])
-        tosend = str(results[0])
-        await message.channel.send(tosend)
-        await message.channel.send(search)
-        await message.channel.send(search2)
-        await message.channel.send(search3)
+        search2 = search.split(' ')
+        results = await gelbooru.random_post(tags=search2, exclude_tags=['gore', 'rape', 'futa', 'loli', 'guro', 'snuff', 'amputation', 'pregnant', ])
+        if not results:
+            await message.channel.send('no results found!!!')
+        else:
+            await message.channel.send(results) 
     
     if message.content == '!helpme':
-        await message.channel.send('!s - my only command. spits out random liked posts from krisnards twitter account')
+        await message.channel.send('!s - spits out random liked posts from krisnards twitter account\n!gel (tags) - searches random gelbooru image with the specified tags. if no results are found use different variations. multiple tags allowed')
 
 client.run(TOKEN)
