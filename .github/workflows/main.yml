@@ -38,6 +38,6 @@ jobs:
       # Discord bot token
       - name: Run tests
         env:
-            BOT_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+            DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
         run: |
             echo bruh
