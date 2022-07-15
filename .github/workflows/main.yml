@@ -42,4 +42,4 @@ jobs:
         env:
             BOT_TOKEN: ${{ secrets.DISCORD_TOKEN }}
         run: |
-            nbdev_test_nbs
+            echo bruh
