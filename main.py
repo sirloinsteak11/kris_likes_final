@@ -60,10 +60,14 @@ async def on_message(message):
     if '!gel' in message.content:
         msgcontent = message.content
         search = msgcontent.replace('!gel', '')
-        results = await gelbooru.search_posts(tags=list(search.split(',')))
-        tosend = results[0]
+        search2 = search.split(',')
+        search3 = list(search2)
+        results = await gelbooru.random_post(tags=search3)
+        tosend = str(results[0])
         await message.channel.send(tosend)
         await message.channel.send(search)
+        await message.channel.send(search2)
+        await message.channel.send(search3)
     
     if message.content == '!helpme':
         await message.channel.send('!s - my only command. spits out random liked posts from krisnards twitter account')
