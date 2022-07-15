@@ -27,7 +27,7 @@ tclient = tweepy.Client(bearer_token)
 user_id = os.getenv('USER_ID')
 
 # hello gelbooru
-gel_access = ('GEL_API_KEY', 'GEL_ID_KEY')
+gelbooru = ('GEL_API_KEY', 'GEL_ID_KEY')
 
 #empty variables
 tweet_list = []
@@ -60,6 +60,9 @@ async def on_message(message):
     if '!gel' in message.content:
         msgcontent = message.content
         search = msgcontent.replace('!gel', '')
+        results = await gelbooru.search_posts(search.split(','))
+        tosend = results[0]
+        await message.channel.send(tosend)
         await message.channel.send(search)
     
     if message.content == '!helpme':
