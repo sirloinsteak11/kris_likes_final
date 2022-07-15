@@ -68,6 +68,6 @@ async def on_message(message):
             await message.channel.send(results) 
     
     if message.content == '!helpme':
-        await message.channel.send('!s - spits out random liked posts from krisnards twitter account\n!gel (tags) - searches random gelbooru image with the specified tags. if no results are found use different variations. multiple tags allowed')
+        await message.channel.send('!s - spits out random liked posts from krisnards twitter account\n!gel (tags) - searches random gelbooru image with the specified tags. if no results are found use different variations. multiple tags allowed. if no tags specified, it will spit out a completely random image')
 
 client.run(TOKEN)
