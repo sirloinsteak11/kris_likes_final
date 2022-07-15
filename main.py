@@ -60,7 +60,7 @@ async def on_message(message):
     if '!gel' in message.content:
         msgcontent = message.content
         search = msgcontent.replace('!gel', '')
-        results = await gelbooru.search_posts(search.split(','))
+        results = await gelbooru.search_posts(tags=list(search.split(',')))
         tosend = results[0]
         await message.channel.send(tosend)
         await message.channel.send(search)
