@@ -8,8 +8,7 @@ from dotenv import load_dotenv
 
 from discord.ext import commands
 
-load_dotenv('token.env')
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.environ('DISCORD_TOKEN')
 
 intents = discord.Intents.default()
 intents.members = True # Subscribe to the privileged members intent.
