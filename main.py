@@ -16,6 +16,8 @@ intents.members = True # Subscribe to the privileged members intent.
 bot = commands.Bot(command_prefix='!', intents=intents)
 intents.typing = True # allows bot to type
 intents.messages = True # allows bot to connect to messages?!!?!?!?!
+
+developer = False
  
 # API keyws that yous saved earlier
 bearer_token = os.getenv('BEARER_TOKEN')
@@ -44,6 +46,16 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    global developer
+
+    if message.content == '!developermodeasuna':
+        developer = True
+        await message.channel.send('debug mode activated')
+
+    if message.content == '!goodbye':
+        developer = False
+        await message.channel.send('see you next time')
+
     if message.content == '!s':
         response = tclient.get_liked_tweets(user_id, tweet_fields=["entities"], max_results=100)
         for tweet in response.data:
@@ -65,7 +77,10 @@ async def on_message(message):
         if not results:
             await message.channel.send('no results found!!!')
         else:
-            await message.channel.send(results) 
+            await message.channel.send(results)
+            if developer:
+                await message.channel.send(search)
+                await message.channel.send(search2) 
     
     if message.content == '!helpme':
         await message.channel.send('!s - spits out random liked posts from krisnards twitter account\n!gel (tags) - searches random gelbooru image with the specified tags. if no results are found use different variations. multiple tags allowed')
