@@ -68,16 +68,18 @@ async def on_message(message):
         tosend = third.get('expanded_url')
         await message.channel.send(tosend)
         await message.channel.send("enjoy :grin:")
+        print(f'message {tosend} sent')
 
     if '!gel' in message.content:
         msgcontent = message.content
         search = msgcontent.replace('!gel', ' ')
         search2 = search.split(' ')
-        results = await gelbooru.random_post(tags=search2, exclude_tags=['gore', 'rape', 'futa', 'loli', 'guro', 'snuff', 'amputation', 'pregnant', ])
+        results = await gelbooru.random_post(tags=search2, exclude_tags=['gore', 'rape', 'futa', 'loli', 'guro', 'snuff', 'amputation', 'pregnant'])
         if not results:
             await message.channel.send('no results found!!!')
         else:
             await message.channel.send(results)
+            print(f'message {results} sent')
             if developer:
                 await message.channel.send(search)
                 await message.channel.send(search2) 
